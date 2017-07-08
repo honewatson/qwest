@@ -283,11 +283,11 @@ module.exports = function() {
 					throw xhr.status + ' (' + xhr.statusText + ')';
 				}
 				// Fulfilled
-				promise(true, [xhr, response]);
+				promise(true, [response, xhr]);
 			}
 			catch(e) {
 				// Rejected
-				promise(false, [e, xhr, response]);
+				promise(false, [e, response, xhr]);
 			}
 		},
 
@@ -407,7 +407,7 @@ module.exports = function() {
 						return function(url, data, options, before) {
 							var index = ++method_index;
 							++loading;
-							promises.push(qwest(method, pinky.base + url, data, options, before).then(function(xhr, response) {
+							promises.push(qwest(method, pinky.base + url, data, options, before).then(function(response, xhr) {
 								values[index] = arguments;
 								if(!--loading) {
 									pinky(true, values.length == 1 ? values[0] : [values]);
