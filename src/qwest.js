@@ -242,6 +242,12 @@ module.exports = function() {
 								try {
 									if('JSON' in global) {
 										response = JSON.parse(xhr.responseText);
+										if(Array.isArray(response)) {
+											response = {response, xhr};
+										}
+										else {
+											response.xhr = xhr;
+										}
 									}
 									else {
 										response = new Function('return (' + xhr.responseText + ')')();
