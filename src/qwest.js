@@ -243,7 +243,7 @@ module.exports = function() {
 									if('JSON' in global) {
 										response = JSON.parse(xhr.responseText);
 										if(Array.isArray(response)) {
-											response = {response, xhr};
+											response = {response: response, xhr: xhr};
 										}
 										else {
 											response.xhr = xhr;
